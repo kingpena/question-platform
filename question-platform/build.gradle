@@ -1,0 +1,44 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.6.4'
+	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.demo'
+version = '1.0.0'
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(8)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	// Spring Boot Web for REST API support
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	// Spring Data JPA for ORM support
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	// MySQL JDBC driver
+	runtimeOnly 'mysql:mysql-connector-java'
+
+	// Spring Boot DevTools for hot reload
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	// Testing libraries
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
